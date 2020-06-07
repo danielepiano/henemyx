@@ -1,0 +1,788 @@
+root {
+    --colore0 #0d0d0d;
+    --colore1 #752575;
+    --colore2 #999;
+    --colore3 #1a1a1a;
+}
+
+ {
+    margin 0;
+    padding 0;
+    outline none;
+    box-sizing border-box;
+    user-select none;
+}
+
+body {
+    display flex;
+    justify-content center;
+    align-items center;
+    overflow hidden;
+    margin 0;
+    background var(--colore0);
+    font-family 'Josefin Sans', sans-serif;
+    width 100vw;
+    height 100vh;
+}
+
+header {
+    position absolute;
+    top 0;
+    width 100vw;
+    height 25%;
+    text-align center;
+}
+header h1 {
+    position absolute;
+    top 50%;
+    left 50%;
+    transform translateX(-50%) translateY(-50%);
+    color var(--colore2);
+    font-size 6rem;
+    letter-spacing 1rem;
+    z-index 200;
+}
+
+.inpCont {
+    position relative;
+    top 3vw;
+    left 50%;
+    padding-bottom 3vw;
+    transform translateX(-50%) translateY(-50%);
+    width inherit;
+}
+.inpCont label {
+    position absolute;
+    top 50%;
+    left 50%;
+    transform translateX(-50%) translateY(-50%);
+    height 1.5rem;
+    width 20vw;
+    color #999;
+    font-size 1rem;
+    pointer-events none;
+    transition 0.2s;
+}
+.inpCont .inp {
+    position absolute;
+    top 50%;
+    left 50%;
+    transform translateX(-50%) translateY(-50%);
+    width 80%;
+    background transparent;
+    border none;
+    box-shadow none;
+    color #999;
+    font-size 0.9rem;
+    letter-spacing 0.1rem;
+}
+.inpCont .inpselection {
+    background #752575;
+}
+.inpCont inputfocus + label, .inpCont inputvalid + label {
+    transform translateX(-53%) translateY(-160%);
+    color white;
+    background #752575;
+    font-size 0.9rem;
+    padding 6px 6px 2px 6px;
+}
+.inpCont span {
+    position absolute;
+    bottom 0;
+    left 50%;
+    transform translateX(-50%) translateY(-50%);
+    width 82%;
+    height 3px;
+    display block;
+    background #999;
+}
+.inpCont spanbefore {
+    content '';
+    position absolute;
+    top 0;
+    left 0;
+    width 100%;
+    height 100%;
+    background #752575;
+    transform scaleX(0);
+    transform-origin right;
+    transition transform 0.5s ease-in-out;
+}
+.inpCont inputfocus ~ spanbefore, .inpCont inputvalid ~ spanbefore {
+    transform scaleX(1);
+    transform-origin left;
+    transition transform 0.5s ease-in-out;
+}
+
+-webkit-scrollbar {
+    width 7px;
+}
+-webkit-scrollbar-track {
+    background var(--colore0);
+    border-radius 10px;
+}
+-webkit-scrollbar-thumb {
+    background var(--colore2);
+    border-radius 10px;
+}
+-webkit-scrollbar-thumbhover {
+    background var(--colore1);
+}
+#griglia {
+    position absolute;
+    top 28%;
+    width 100vw;
+    display flex;
+    flex-direction row;
+    justify-content space-evenly;
+}
+@media only screen and (max-width 800px) {
+    #griglia {
+        flex-direction column;
+        justify-content space-evenly;
+        overflow-y scroll;
+    }
+}
+
+#chatcont {
+    grid-column-start 2;
+    grid-column-end 3;
+    height 56vh;
+    width 56.2vw;
+    min-width 52vh;
+    background var(--colore3);
+    border-left 1px solid var(--colore2);
+    border-bottom 1px solid var(--colore2);
+    border-right 1px solid var(--colore2);
+    border-radius 25px;
+    transition border 0.2s;
+}
+#chatcont #areainvio {
+    position absolute;
+    height 100%;
+    width 56.2vw;
+}
+#chatcont #areainvio textarea {
+    position absolute;
+    left 0.5vh;
+    bottom 0.7vh;
+    height 9vh;
+    width calc(100% - 1.4vh);
+    outline none;
+    resize none;
+    border-radius 25px;
+    padding 1vh 9.5vh 1vh 3vh;
+    font-family 'Josefin Sans', sans-serif;
+    font-size 1rem;
+    background white;
+    color var(--colore0);
+}
+#chatcont #areainvio textareaselection {
+    background var(--colore1);
+    color white;
+}
+#chatcont #areainvio button {
+    position absolute;
+    right 1.6vh;
+    bottom 1.13vh;
+    height 8vh;
+    width 8vh;
+    border-radius 8vh;
+    border none;
+    outline none;
+    box-shadow none;
+    background url(..imageshermesg.svg) var(--colore1) no-repeat;
+    background-position center;
+    background-size 80%;
+    transform rotate(-30deg);
+    transition transform 0.2s ease-in;
+}
+#chatcont #areainvio buttonhover {
+    transform rotate(30deg);
+    cursor pointer;
+}
+#messaggi {
+    position absolute;
+    top 3.3vh;
+    height calc(100% - 13.5vh);
+    width 55.6vw;
+    overflow-x hidden;
+    overflow-y auto;
+    z-index 100;
+}
+.miomessaggio {
+    position relative;
+    margin 7px;
+    text-align right;
+    max-width 40%;
+    transform translateX(145%);
+    color white;
+    background var(--colore1);
+    padding 7px;
+    border 0.5px solid white;
+    border-radius 7px;
+}
+.altromessaggio {
+    position relative;
+    margin 7px;
+    text-align left;
+    max-width 40%;
+    color var(--colore0);
+    background var(--colore2);
+    padding 7px;
+    border 0.5px solid white;
+    border-radius 7px;
+}
+.miomessaggio .datamessaggio {
+    font-size 0.8rem;
+    text-align left;
+    margin-bottom 5px;
+}
+.altromessaggio .datamessaggio {
+    font-size 0.8rem;
+    text-align right;
+    margin-bottom 5px;
+}
+.miomessaggio .cl {
+    position absolute;
+    bottom 5px;
+    left 5px;
+    height 5px;
+    width 5px;
+    border-radius 5px;
+    background var(--colore2);
+}
+
+.newmex {
+    position absolute;
+    top 0;
+    right 2vw;
+    height 100%;
+    width 2.4vw;
+}
+.newmex p {
+    position absolute;
+    top 50%;
+    left 0;
+    transform translateY(-50%);
+    height 5px;
+    width 5px;
+    border-radius 5px;
+    background var(--colore1);
+}
+.newmex h3 {
+    position absolute;
+    top 50%;
+    right 0.8vw;
+    color var(--colore1);
+    transform translateY(-50%);
+}
+
+#chatcorrenticont, #scopricont, #cercachatcont {
+    height 56vh;
+    width 52vh;
+    background var(--colore3);
+    border-left 1px solid var(--colore2);
+    border-bottom 1px solid var(--colore2);
+    border-right 1px solid var(--colore2);
+    border-radius 25px;
+    transition border 0.2s;
+}
+#chatcorrenticonthover, #scopriconthover, #cercachatconthover, #chatconthover {
+    border-left 1px solid var(--colore1);
+    border-bottom 1px solid var(--colore1);
+    border-right 1px solid var(--colore1);
+}
+#chatcorrenticont h1, #scopricont h1, #chatcont h1 {
+    top 0;
+    left 50%;
+    width 100%;
+    transform translateY(-50%);
+    color var(--colore2);
+    transition color 0.3s ease-in;
+}
+#chatcorrenti, #scopri {
+    position absolute;
+    top 0;
+}
+#cercachat {
+    position relative;
+    top -3vw;
+}
+#chatcorrenti, #scopri, #cercachat {
+    height 55.7vh;
+    width 51vh;
+    overflow-y scroll;
+    overflow-x hidden;
+    border-radius 25px;
+}
+#chatcorrentihover + h1, #scoprihover + h1, #cercachatconthover #headcerca label, #chatconthover h1 {
+    color white;
+}
+#headcerca {
+    position relative;
+    top 1.4vh;
+    left 50%;
+    padding-bottom 3vw;
+    transform translateX(-50%) translateY(-50%);
+    width 100%;
+    z-index 200;
+}
+#headcerca label {
+    position absolute;
+    top 30%;
+    left 0;
+    transform translateY(-50%);
+    width 20vw;
+    color var(--colore2);
+    font-size 1rem;
+    pointer-events none;
+    transition 0.2s;
+}
+#headcerca input {
+    position absolute;
+    top 50%;
+    left 50%;
+    transform translateX(-50%) translateY(-50%);
+    width 80%;
+    background transparent;
+    border none;
+    box-shadow none;
+    color var(--colore2);
+    font-size 1.4rem;
+    letter-spacing 0.1rem;
+    z-index 200;
+}
+#headcerca inputselection {
+    background var(--colore1);
+}
+#headcerca inputfocus + label, #headcerca inputvalid + label {
+    transform translateX(-10%) translateY(-130%);
+    color white;
+    height calc(0.9rem + 1.8vw);
+    background var(--colore1);
+    font-size 0.9rem;
+    padding 5px 12px;
+}
+#headcerca span {
+    position absolute;
+    bottom -0.4vw;
+    right 10.4%;
+    transform translateY(-50%);
+    width 82%;
+    height 3px;
+    display block;
+    background var(--colore2);
+}
+#headcerca spanbefore {
+    content '';
+    position absolute;
+    top 0;
+    left 0;
+    width 100%;
+    height 100%;
+    background var(--colore1);
+    transform scaleX(0);
+    transform-origin right;
+    transition transform 0.5s ease-in-out;
+}
+#headcerca inputfocus ~ spanbefore, #headcerca inputvalid ~ spanbefore {
+    transform scaleX(1);
+    transform-origin left;
+    transition transform 0.5s ease-in-out;
+}
+
+.utenteCont {
+    position relative;
+    top 2.4vw;
+    left 51%;
+    margin-top 0.8vw;
+    padding-bottom 3vw;
+    transform translateX(-50%);
+    height 6vh;
+    width 100%;
+    background var(--colore3);
+    width inherit;
+    border-radius 25px 0 0 25px;
+    transition background-color 0.4s ease-in;
+}
+.utenteConthover {
+    right 0;
+    background var(--colore2);
+}
+.utenteConthover .info {
+    color var(--colore1);
+}
+.utenteCont label {
+    position absolute;
+    top 50%;
+    left 50%;
+    transform translateX(-50%) translateY(-50%);
+    height 1.5rem;
+    width 81%;
+    background transparent;
+    color transparent;
+    font-size 1rem;
+    pointer-events none;
+    transition 0.2s;
+    z-index 100;
+}
+.utenteCont .info {
+    position absolute;
+    top 50%;
+    right 9%;
+    transform translateY(-50%);
+    width 70%;
+    background transparent;
+    border none;
+    box-shadow none;
+    color var(--colore2);
+    font-size 0.9rem;
+    letter-spacing 0.1rem;
+}
+.utenteConthover label {
+    transform translateX(-49%) translateY(-160%);
+    color white;
+    background var(--colore1);
+    font-size 0.9rem;
+    padding 6px 6px 2px 6px;
+}
+.utenteCont span {
+    position absolute;
+    bottom 0;
+    right 9%;
+    transform translateY(-50%);
+    width 72%;
+    height 3px;
+    display block;
+    background var(--colore2);
+}
+.utenteCont spanbefore {
+    content '';
+    position absolute;
+    top 0;
+    left 0;
+    width 100%;
+    height 100%;
+    background var(--colore1);
+    transform scaleX(0);
+    transform-origin right;
+    transition transform 0.5s ease-in-out;
+}
+.utenteConthover spanbefore {
+    transform scaleX(1);
+    transform-origin left;
+    transition transform 0.5s ease-in-out;
+}
+form #aprichat {
+    position absolute;
+    top 0;
+    left 0;
+    height 100%;
+    width 100%;
+    background transparent;
+    border none;
+    color transparent;
+    font-size 0.9rem;
+    letter-spacing 0.1rem;
+    outline none;
+    border none;
+    box-shadow none;
+    color transparent;
+}
+form #aprichat {
+    cursor pointer;
+}
+
+#formaccesso {
+    position absolute;
+    top 33%;
+    left calc(50% - 12.5vw);
+    height 20.5vw;
+    width 25vw;
+    background #1a1a1a;
+    padding 2vw;
+    border 2px solid #999;
+    border-radius 25px;
+}
+#formaccesso #log {
+    position absolute;
+    bottom 0;
+    left 27%;
+    transform translateX(-50%);
+    width 9vw;
+    height 4vw;
+    margin-bottom 10%;
+    border none;
+    box-shadow none;
+    background var(--colore2);
+    color white;
+    font-size 1rem;
+    border-radius 5px;
+    transition 0.3s;
+}
+#formaccesso #reg {
+    position absolute;
+    bottom 0;
+    left 73%;
+    transform translateX(-50%);
+    width 9vw;
+    height 4vw;
+    margin-bottom 10%;
+    border none;
+    box-shadow none;
+    background var(--colore2);
+    color white;
+    font-size 1rem;
+    transition 0.3s;
+    border-radius 5px;
+}
+#formaccesso #loghover, #formaccesso #reghover {
+    background var(--colore1);
+    cursor pointer;
+}
+
+.didascalia {
+    position absolute;
+    top 0;
+    left 0;
+    width 100%;
+    height 100%;
+}
+.didascalia p {
+    position absolute;
+    top 75%;
+    left 50%;
+    transform translateX(-50%);
+    width 100%;
+    text-align center;
+    color var(--colore1);
+    font-size 1rem;
+    transition top 0.2s ease-in, color 0.2s ease-in;
+}
+#startchat {
+    background url(..imagesstartv.svg) no-repeat;
+    background-size 40%;
+    background-position center;
+    transition background 0.2s ease-in;
+}
+#chatcorrenticonthover #chatcorrenti #startchat {
+    background url(..imagesstartg.svg) no-repeat;
+    background-size 40%;
+    background-position 50% 40%;
+}
+#search {
+    background url(..imagessearchv.svg) no-repeat;
+    background-size 40%;
+    background-position center;
+    transition background 0.2s ease-in;
+}
+#cercachatconthover #cercachat #search {
+    background url(..imagessearchg.svg) no-repeat;
+    background-size 40%;
+    background-position 50% 40%;
+}
+#attention {
+    background url(..imagesattentionv.svg) no-repeat;
+    background-size 40%;
+    background-position center;
+    transition background 0.2s ease-in;
+}
+#cercachatconthover #cercachat #attention {
+    background url(..imagesattentiong.svg) no-repeat;
+    background-size 40%;
+    background-position 50% 40%;
+}
+#newchat {
+    background url(..imageswindv.svg) no-repeat;
+    background-size 40%;
+    background-position center;
+    transition background 0.2s ease-in;
+}
+#scopriconthover #scopri #newchat {
+    background url(..imageswindg.svg) no-repeat;
+    background-size 40%;
+    background-position 50% 40%;
+}
+#startmessaggio {
+    background url(..imagesuniversev.svg) no-repeat;
+    background-size 18%;
+    background-position center;
+    transition background 0.2s ease-in;
+}
+#chatconthover #messaggi #startmessaggio {
+    background url(..imagesuniverseg.svg) no-repeat;
+    background-size 18%;
+    background-position 50% 40%;
+}
+#chatcorrenticonthover #chatcorrenti .didascalia p,
+#cercachatconthover #cercachat .didascalia p,
+#scopriconthover #scopri .didascalia p,
+#chatconthover #messaggi .didascalia p {
+    top 69.5%;
+    color var(--colore2);
+}
+
+#divoscuramento {
+    position absolute;
+    top 0;
+    left 0;
+    height 100vh;
+    width 100vw;
+    background black;
+    opacity 0;
+    z-index -250;
+    transition opacity 0.2s ease-in;
+}
+#chiudisessione {
+    position absolute;
+    bottom 9.8vh;
+    right 0.7vw;
+    color var(--colore2);
+    transition color 0.2s ease-in;
+    text-decoration underline;
+}
+#chiudisessionehover {
+    color var(--colore1);
+}
+#popupchiudi {
+    position absolute;
+    top -100%;
+    left 50%;
+    transform translateX(-50%) translateY(-50%);
+    height 18vw;
+    width 22vw;
+    text-align center;
+    z-index 300;
+    transition top 0.4s ease-out;
+}
+#popupchiudi form {
+    position relative;
+    top 0;
+    left 0;
+    height 100%;
+    width 100%;
+    background var(--colore1);
+    border 2px solid var(--colore2);
+    border-radius 20px;
+}
+#popupchiudi form label {
+    position absolute;
+    top 0;
+    left 0;
+    padding 2vw;
+    height calc(1.5rem  2 + 1vw);
+    width 100%;
+    color white;
+    font-size 1.3rem;
+}
+#popupchiudi form button {
+    position relative;
+    top 6vw;
+    width 80%;
+    height calc(1.3rem + 2vw);
+    border none;
+    box-shadow none;
+    background var(--colore2);
+    color var(--colore3);
+    font-size 1rem;
+    border-radius 5px;
+    transition 0.3s;
+
+}
+#sishover {
+    background #4d0000;
+    color var(--colore2);
+    cursor pointer;
+}
+#nonhover {
+    background var(--colore3);
+    color var(--colore2);
+    cursor pointer;
+}
+
+#feedback {
+    position absolute;
+    top 83%;
+    text-align center;
+    width 50vw;
+    font-size 1.2rem;
+    color var(--colore1);
+}
+
+footer {
+    position absolute;
+    padding 0;
+    bottom 0;
+    width 100vw;
+    height 8.5%;
+    background var(--colore1);
+}
+footer #dati {
+    position absolute;
+    bottom 9.8vh;
+    left 0.7vw;
+    width 30%;
+    color var(--colore2);
+    font-size 0.7rem;
+}
+footer #credits {
+    position absolute;
+    text-align center;
+    top 50%;
+    left 50%;
+    width 100%;
+    height 0.9rem;
+    transform translateX(-50%) translateY(-50%);
+    color white;
+    font-size 0.9rem;
+    padding 0;
+}
+
+#changemode {
+    position absolute;
+    top 11vh;
+    right 0.7vw;
+    height 10vh;
+    width 10vh;
+    background transparent;
+    border-radius 20px;
+}
+#changemode form input {
+    position absolute;
+    top 0;
+    width 100%;
+    height 100%;
+    border none;
+    box-shadow none;
+    color transparent;
+    font-size 1rem;
+    border-radius 5px;
+    background url(..imagesmoong.svg) no-repeat;
+    background-size 100%;
+    background-position center;
+    transition background 0.1s ease-in;
+}
+#changemode form inputhover {
+    background url(..imagessunv.svg) no-repeat;
+    background-size 100%;
+    background-position center;
+}
+
+#goback {
+    position absolute;
+    top 11vh;
+    left 0.7vw;
+    height 10vh;
+    width 10vh;
+    background url(..imageswindg.svg) no-repeat;
+    background-size 100%;
+    background-position center;
+    transform rotateY(180deg);
+    transition background 0.1s ease-in;
+}
+#gobackhover {
+    background url(..imageswindv.svg) no-repeat;
+    background-size 100%;
+    background-position center;
+}
