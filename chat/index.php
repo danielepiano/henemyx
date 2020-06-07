@@ -16,7 +16,7 @@
         $con = mysqli_connect("127.0.0.1", "root", "", "my_henemyx") or die("Errore nella connessione.");
 
         // CONTROLLO SE IL nomeutente E' REALMENTE ASSOCIATO ALL'idutente
-        $query = "SELECT idutente FROM utenti WHERE nomeutente = '$nomeutente'";
+        /*$query = "SELECT idutente FROM utenti WHERE nomeutente = '$nomeutente'";
         $result = mysqli_query($con, $query);
         $result = mysqli_fetch_array($result);
         $idut = $result["idutente"];
@@ -31,7 +31,7 @@
             $result = mysqli_query($con, $query);
             if(mysqli_num_rows($result) == 0)
                 header("location: ../index.php?feedback=0");
-            else {
+            else {*/
                 // PRENDO IL NOME DELL'ALTRO UTENTE
                 $result = mysqli_fetch_array($result);
 
