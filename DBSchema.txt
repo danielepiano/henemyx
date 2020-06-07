@@ -1,0 +1,26 @@
+CREATE DATABASE `my_henemyx` DEFAULT CHARACTER SET utf8mb4
+				     COLLATE utf8mb4_general_ci;
+	USE `my_henemyx`;
+	
+	CREATE TABLE `utenti` (
+	    `nomeutente` char(15) NOT NULL,
+	    `idutente` int(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	    `pwd` char(32) NOT NULL,
+	    `darkmode` bit(1) NOT NULL
+	) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
+	
+	CREATE TABLE `chat` (
+	    `idchat` int(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	    `idutente1` int(10) NOT NULL REFERENCES utenti(idutente),
+	    `idutente2` int(10) NOT NULL REFERENCES utenti(idutente),
+	    `chiavecifratura` char(16) NOT NULL
+	) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
+	
+	CREATE TABLE `messaggi` (
+	    `idmessaggio` int(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	    `idchat` int(10) NOT NULL REFERENCES chat(idchat),
+	    `idmittente` int(11) NOT NULL REFERENCES utenti(idutente),
+	    `corpo` char(255) NOT NULL,
+	    `dataora` datetime NOT NULL,
+	    `confermalettura` bit(1) NOT NULL
+	) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
